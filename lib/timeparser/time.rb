@@ -12,8 +12,6 @@ module Timeparser
       case round
         when :up
           (minutes.to_f / 60.0).ceil
-        when :down
-          (minutes.to_f / 60.0).floor
         else
           (minutes.to_f / 60.0).to_i
       end
