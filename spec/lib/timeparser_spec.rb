@@ -30,6 +30,7 @@ describe Timeparser do
 
     it "parses hours and minutes" do
       parser.parse('1h20m').to_i.should eql 80
+      parser.parse('2hours 30minutes').to_i.should eql 150
     end
 
     it "parses colon notation" do
@@ -44,7 +45,7 @@ describe Timeparser do
       parser.parse('').to_i.should eql 0
     end
 
-    it "parses times within a text" do
+    it "does not parse times within a text" do
       parser.parse(%Q{The movie was 1h long but the truck was 20m long.}).to_i.should eql 0
     end
   end

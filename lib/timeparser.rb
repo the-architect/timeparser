@@ -1,6 +1,7 @@
 require "timeparser/version"
 require "timeparser/parser"
 require "timeparser/time"
+require 'timeparser/core_ext'
 
 module Timeparser
   class << self

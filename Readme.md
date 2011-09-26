@@ -3,8 +3,8 @@ Timeparser
 
 Allows you to parse times from a string using a treetop grammar. It's pretty basic.
 
-Example
--------
+Examples
+--------
 
     Timeparser.parse("1h20m").to_i # => 80
     Timeparser.parse("1h20m").hours # => 1
@@ -35,9 +35,13 @@ and then run
 Usage
 -----
 
-    Timeparser.parse('your time information')
+    Timeparser.parse('2hours 30minutes')
 
-will return a Timeparser::Time instance. If you need the accumulated minutes that were parsed out of the string call the #to_i or #minutes methods.
+Timeparser extends String with a method called #parse_time, use it like this:
+
+    "1h30m".parse_time
+
+each of these methods will return a Timeparser::Time instance. If you need the accumulated minutes that were parsed out of the string call the #to_i or #minutes methods.
 
 The Time instance also knows about hours, which you can access through the #hours method. #hours takes an argument which allows you to round up the hours based on the minutes. Default is rounding down.
 
