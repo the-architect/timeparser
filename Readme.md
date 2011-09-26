@@ -1,3 +1,6 @@
+[![Build Status](https://secure.travis-ci.org/the-architect/timeparser.png)](http://travis-ci.org/the-architect/timeparser)
+
+
 Timeparser
 ==========
 
