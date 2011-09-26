@@ -7,13 +7,13 @@ Gem::Specification.new do |s|
   s.version     = Timeparser::VERSION
   s.authors     = ["Marcel Scherf"]
   s.email       = ["marcel.scherf@epicteams.com"]
-  s.homepage    = "github.com"
-  s.summary     = %q{Parses time}
-  s.description = %q{Parses time information in strings}
+  s.homepage    = "http://github.com/the-architect/timeparser"
+  s.summary     = %q{Parses time information from strings.}
+  s.description = %q{Parses time information from strings.}
 
   s.rubyforge_project = "timeparser"
 
-  s.add_dependency "treetop"
+  s.add_runtime_dependency "treetop"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
