@@ -1,0 +1,38 @@
+grammar Timeparsing
+  rule root
+    (dot_seperated / hours / minutes)*
+    {
+      def value
+        self.elements.inject(0) {|akk, e| akk += e.value; akk }
+      end
+    }
+  end
+
+  rule dot_seperated
+    [0-9]* ':' [0-9]*
+    {
+      def value
+        elements[0].text_value.to_i*60 + elements[2].text_value.to_i
+      end
+    }
+  end
+
+  rule hours
+    ([0-9]* 'h' / 'hours')
+    {
+      def value
+        self.text_value.to_i * 60
+      end
+    }
+  end
+
+  rule minutes
+    ( [0-9]* "m" / "min" /  "minutes" )
+    {
+      def value
+        self.text_value.to_i
+      end
+    }
+  end
+
+end
