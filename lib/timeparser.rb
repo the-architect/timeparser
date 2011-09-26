@@ -1,16 +1,15 @@
 require "timeparser/version"
-require 'polyglot'
-require 'treetop'
-Treetop.load File.join(File.dirname(__FILE__), 'timeparser/timeparsing.treetop')
+require "timeparser/parser"
+require "timeparser/time"
 
 module Timeparser
-  class Parser
+  class << self
     def parser
-      @parser ||= TimeparsingParser.new
+      @parser ||= Parser.new
     end
 
     def parse(string)
-      parser.parse(string).value
+      parser.parse string
     end
   end
 end

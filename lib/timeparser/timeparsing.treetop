@@ -1,15 +1,31 @@
 grammar Timeparsing
+
   rule root
-    (dot_seperated / hours / minutes)*
+    (times / whitespace)*
     {
       def value
-        self.elements.inject(0) {|akk, e| akk += e.value; akk }
+        elements.inject(0) do |akk, e|
+          akk += e.value
+          akk
+        end
+      end
+    }
+  end
+
+  rule times
+    dot_seperated / hours / minutes / other_stuff
+    {
+      def value
+        elements.inject(0) do |akk, e|
+          akk += e.value
+          akk
+        end
       end
     }
   end
 
   rule dot_seperated
-    [0-9]* ':' [0-9]*
+    (([0-9]* ':' [0-9]*) / (hours ':' minutes))
     {
       def value
         elements[0].text_value.to_i*60 + elements[2].text_value.to_i
@@ -18,7 +34,7 @@ grammar Timeparsing
   end
 
   rule hours
-    ([0-9]* 'h' / 'hours')
+    [0-9]+ ('hours' / 'hrs' / 'h')
     {
       def value
         self.text_value.to_i * 60
@@ -27,7 +43,7 @@ grammar Timeparsing
   end
 
   rule minutes
-    ( [0-9]* "m" / "min" /  "minutes" )
+    [0-9]+ ("minutes" / "min" /  "m")
     {
       def value
         self.text_value.to_i
@@ -35,4 +51,13 @@ grammar Timeparsing
     }
   end
 
+  rule whitespace
+    " "
+    { def value; 0; end }
+  end
+
+  rule other_stuff
+    [a-zA-Z]+
+    { def value; 0; end }
+  end
 end
